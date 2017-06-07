@@ -1,24 +1,10 @@
 <?php
-require 'conexao.php';
 
-$query = "select * from clientes";
-$stmt = $db->prepare($query);
-$stmt->execute();
+require_once "Cliente.php";
 
-$clientes = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+$cliente = new Cliente;
+$listaCliente = $cliente->listar();
+
+require_once "clientes.list.php";
+
 ?>
-
-<table>
-	<tr>
-		<td>ID</td>
-		<td>Nome</td>
-		<td>Email</td>
-	</tr>
-	<? foreach($clientes as $cliente): ?>
-	<tr>
-		<td><?$cliente['id']?></td>
-		<td><?$cliente['nome']?></td>
-		<td><?$cliente['email']?></td>
-	</tr>
-	<? endforeach; ?>
-</table>

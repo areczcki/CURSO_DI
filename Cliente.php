@@ -13,7 +13,7 @@ class Cliente
 		*/
 
 	/** Vamos desacoplar */
-	public function __construct($conexao)
+	public function __construct(Conexao $conexao)
 	{
 		$this->db = $conexao->connect();
 	}

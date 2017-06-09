@@ -1,6 +1,8 @@
 <?php
 
-class Conexao
+require_once 'ConexaoInterface.php';
+
+class Conexao implements ConexaoInterface
 {
 
 	private $host;

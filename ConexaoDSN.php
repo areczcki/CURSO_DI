@@ -1,6 +1,8 @@
 <?php
 
-class ConexaoDSN
+require_once 'ConexaoInterface';
+
+class ConexaoDSN implements ConexaoInterface
 {
 	private $dsn;
 	private $user;
@@ -11,11 +13,10 @@ class ConexaoDSN
 		$this->dsn		= $dsn;
 		$this->user		= $user;
 		$this->password = $password;
-	}
-
-	public function conectar()
-	{
+	}
+	public function connect() {
 		return new \PDO($this->dsn, $this->user, $this->password);
+
 	}
 
 }

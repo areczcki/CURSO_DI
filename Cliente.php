@@ -1,5 +1,6 @@
 <?php
-require_once conexao.php;
+
+require_once 'ConexaoInterface.php';
 
 class Cliente
 {
@@ -13,7 +14,7 @@ class Cliente
 		*/
 
 	/** Vamos desacoplar */
-	public function __construct(Conexao $conexao)
+	public function __construct(ConexaoInterface $conexao)
 	{
 		$this->db = $conexao->connect();
 	}

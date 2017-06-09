@@ -1,17 +1,24 @@
 <?php
+require_once "Conexao.php";
 
-require_once 'Conexao.php';
-
-class Cliente
+class Cliente 
 {
+	
+	private $db;
+	
+	public function __construct()
+	{
+		$conexao = new Conexao("localhost", "diservice", "root", "root");
+		$this->db = $conexao->connect();
+	}
+	
 	public function listar()
 	{
-
-		//retirar da index.php o código abaixo.
-		$query = "select * from clientes";
+		
+		$query = "select * from $clientes";
 		$stmt = $db->prepare($query);
 		$stmt->execute();
-
+		
 		$return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 }

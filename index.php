@@ -7,6 +7,12 @@ require_once 'ConexaoDSN.php';
 $conexao = new Conexao("localhost", "diservice", "root", "root");
 $conexaoDSN = new ConexaoDSN("mysql server=localhost dbname=diservice", "root", "root");
 
+/**
+ * Chamando a instancia de Cliente via container
+ * @var Cliente
+ */
+$cliente = Container::getCliente();
+
 
 /**
  * Como e uma interface de conexão o parametro 

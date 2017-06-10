@@ -2,6 +2,8 @@
 
 require_once 'vendor/autoload.php';
 
+$pimple = new Pimple();
+
 $conexao = new Conexao("localhost", "diservice", "root", "root");
 $conexaoDSN = new ConexaoDSN("mysql server=localhost dbname=diservice", "root", "root");
 

@@ -4,6 +4,25 @@ require_once 'vendor/autoload.php';
 
 $pimple = new Pimple();
 
+$container['datahora'] = function () {
+	return new \DateTime();
+};
+
+//Usando o Container do Pimple
+$hora = $container['datahora'];
+//e porque não fazer assim
+$hora = new \DateTime;
+
+//Se eu chamar assim:
+$hora = new \DateTime;
+//Estamos instanciando o PHP na memoria.
+
+//Se eu chamar assim:
+$hora = $container['dataHora'];
+//Dessa forma estaremos instanciando, somente quando chamarmos $container['dataHora']
+
+//Essa função ($container['dataHora']) consegue trabalhar sobre demanda, só vai chamar quando invocar.
+
 $conexao = new Conexao("localhost", "diservice", "root", "root");
 $conexaoDSN = new ConexaoDSN("mysql server=localhost dbname=diservice", "root", "root");
 

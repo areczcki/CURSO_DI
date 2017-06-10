@@ -1,8 +1,6 @@
 <?php
 
-require_once "Cliente.php";
-require_once 'Conexao.php';
-require_once 'ConexaoDSN.php';
+require_once 'vendor/autoload.php';
 
 $conexao = new Conexao("localhost", "diservice", "root", "root");
 $conexaoDSN = new ConexaoDSN("mysql server=localhost dbname=diservice", "root", "root");

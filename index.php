@@ -23,6 +23,42 @@ $hora = $container['dataHora'];
 
 //Essa função ($container['dataHora']) consegue trabalhar sobre demanda, só vai chamar quando invocar.
 
+//Vamos dar uma nova perspectiva para a nossa conexao.
+/*
+$container['conexao'] = function() {
+	return new \SON\Conexao("localhost", "diservice", "root", "root");
+};
+Toda vez que eu chamar uma conexão, estamos criando duas conexões com banco...
+Isso é terrivel, estamos com duas instancias de conexões.
+*/
+
+/*
+ * Vamos trabalhar com serviços compartilhados.
+ * Com o pimple faremos da seguinte forma.
+ */
+$container['conexao'] = $container->share(function() {
+	return new \SON\Conexao("localhost", "diservice", "root", "root");
+});
+/*
+ * Utilizando $container->share o pimple fará com que compartilhemos a mesma instancia de conexão.
+ * Pegando a mesma instancia que está na memória.
+ */
+
+
+
+//Então vamos fazer utiliza-lo.
+$cliente = new \SON\Cliente($container['conexao']);
+
+//Mais e se eu precisar instanciar um novo Cliente.
+$cliente2 = new \SON\Cliente($container['conexao']);
+
+//Toda vez que eu chamar uma conexão, estamos criando duas conexões com banco...
+//Isso é terrivel, estamos com duas instancias de conexões.
+
+//Vamos trabalhar com serviços compartilhados.
+//Com o pimple faremos da seguinte forma.
+
+
 $conexao = new Conexao("localhost", "diservice", "root", "root");
 $conexaoDSN = new ConexaoDSN("mysql server=localhost dbname=diservice", "root", "root");
 

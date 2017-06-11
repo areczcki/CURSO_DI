@@ -36,14 +36,21 @@ Isso é terrivel, estamos com duas instancias de conexões.
  * Vamos trabalhar com serviços compartilhados.
  * Com o pimple faremos da seguinte forma.
  */
-$container['conexao'] = $container->share(function() {
-	return new \SON\Conexao("localhost", "diservice", "root", "root");
-});
+// $container['conexao'] = $container->share(function() {
+// 	return new \SON\Conexao("localhost", "diservice", "root", "root");
+// });
 /*
  * Utilizando $container->share o pimple fará com que compartilhemos a mesma instancia de conexão.
  * Pegando a mesma instancia que está na memória.
  */
 
+/**
+ * O servico chamando outro.
+ * E se tive-se tivesemos diversos programas rodando, não irá ficar instanciando esse objeto na memória.
+ */
+$container['cliente'] = $container->share(function(){
+	return new \SON\Cliente($container['conexao']);
+});
 
 
 //Então vamos fazer utiliza-lo.
